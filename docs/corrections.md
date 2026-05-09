@@ -6,9 +6,9 @@ Spec mismatches found during sessions. Resolved via `/brana:maintain-specs`.
 
 | ID | Severity | Status | Title |
 |----|----------|--------|-------|
-| E2026-05-08-1 | Medium | pending | CLAUDE.md billing mode allows subscription for dev — blocked since Feb 2026 |
-| E2026-05-08-2 | Medium | pending | CLAUDE.md stack table omits ruflo as production dependency |
-| E2026-05-08-3 | Low | pending | CLAUDE.md architecture diagram missing 202 Accepted async pattern |
+| E2026-05-08-1 | Medium | resolved | CLAUDE.md billing mode allows subscription for dev — blocked since Feb 2026 |
+| E2026-05-08-2 | Medium | resolved | CLAUDE.md stack table omits ruflo as production dependency |
+| E2026-05-08-3 | Low | resolved | CLAUDE.md architecture diagram missing 202 Accepted async pattern |
 
 ---
 

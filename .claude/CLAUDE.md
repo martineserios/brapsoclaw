@@ -9,13 +9,20 @@ A fork/rewrite of [NanoClaw](https://github.com/qwibitai/nanoclaw) that replaces
 ## Architecture
 
 ```
-WhatsApp → Kapso (webhooks) → brapsoclaw (Express/TS) → Anthropic SDK → Claude
+WhatsApp → Kapso (webhooks) → brapsoclaw (Express/TS) ──[202 Accepted]──→ Kapso
+                                    ↓ (async)
+                            Anthropic SDK → Claude
                                     ↓
                             Session Manager (phone → conversation history)
                             Message Formatter (4096 char batching, WA markdown)
                             Input Sanitizer (injection guard, length limits)
                             Security Layer (phone allowlist, audit log)
+                            Ruflo (long-term memory, HTTP mode, shared w/ brana)
+                                    ↓
+                            Kapso outbound API → WhatsApp reply
 ```
+
+Kapso requires ≤5s webhook response. brapsoclaw returns 202 Accepted immediately, processes Claude response async, then delivers via Kapso outbound API.
 
 ### Key differences from NanoClaw
 
@@ -35,18 +42,14 @@ WhatsApp → Kapso (webhooks) → brapsoclaw (Express/TS) → Anthropic SDK → 
 - **AI:** Anthropic SDK (`@anthropic-ai/sdk`) — Claude API credits
 - **WhatsApp:** `@kapso/whatsapp-cloud-api` (webhooks + send)
 - **State:** SQLite (`better-sqlite3`) dev → PostgreSQL prod
+- **Memory:** Ruflo (`-t http -p 8080`, ruvector PostgreSQL) — shared long-term memory with local brana
 - **Deployment:** Docker / Railway
 
 ## Billing mode
 
-Two modes available at runtime via env:
+**API credits required unconditionally.** Set `ANTHROPIC_API_KEY` in env.
 
-| Mode | How | Cost | When |
-|------|-----|------|------|
-| API credits | `ANTHROPIC_API_KEY` set | Per-token billing | Production |
-| Subscription | No API key, `claude auth login` done | Subscription quota | Local dev/testing only |
-
-**Do not run subscription mode in production.** ToS gray area — personal quota shared with your own Claude usage. API credits are the correct choice for any always-on deployment.
+Subscription mode is prohibited for automated bots per Anthropic ToS (Feb 2026) — including dev and test environments. There is no supported alternative billing path.
 
 ## Client
 
