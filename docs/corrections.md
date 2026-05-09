@@ -9,6 +9,7 @@ Spec mismatches found during sessions. Resolved via `/brana:maintain-specs`.
 | E2026-05-08-1 | Medium | resolved | CLAUDE.md billing mode allows subscription for dev — blocked since Feb 2026 |
 | E2026-05-08-2 | Medium | resolved | CLAUDE.md stack table omits ruflo as production dependency |
 | E2026-05-08-3 | Low | resolved | CLAUDE.md architecture diagram missing 202 Accepted async pattern |
+| E2026-05-09-1 | Medium | pending | CLAUDE.md "Key differences" table presents aspirational features as shipped |
 
 ---
 
@@ -48,3 +49,16 @@ Spec mismatches found during sessions. Resolved via `/brana:maintain-specs`.
 **Spec says:** Diagram shows linear: Kapso → brapsoclaw → Claude API  
 **Reality:** Kapso requires ≤5s webhook response. Pattern: immediate 202 Accepted back to Kapso, Claude processes async in background, then sends reply via Kapso outbound API  
 **Fix:** Update diagram to show two-arrow flow: sync 202 ack + async delayed send
+
+---
+
+## E2026-05-09-1: CLAUDE.md "Key differences" table presents aspirational features as shipped
+
+**Severity:** Medium
+**Status:** pending (fix: t-29 or next CLAUDE.md update)
+**Discovery:** 2026-05-09 debrief — challenger review + debrief-analyst cross-check
+**Affected files:** `.claude/CLAUDE.md` — §Key differences from NanoClaw
+
+**Spec says:** Table lists `/reset, /status, /compact` bot commands and `Input sanitization + phone allowlist + audit log` as brapsoclaw capabilities
+**Reality:** No code exists — repo has no `src/`. These are Phase 1 targets, not shipped features. Future readers treat the table as implemented, masking real gaps.
+**Fix:** Add a `Status` column (`Phase 1` / `Shipped`) or move the table under a "Goals" heading until features land.

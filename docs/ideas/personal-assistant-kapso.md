@@ -223,3 +223,9 @@ Total estimado: **~$10-15/mes** (Sonnet API + Railway + Kapso free tier)
 - [ ] Auth de brapsoclaw → ruflo cloud: ¿API key en header? ¿JWT?
 - [ ] Persona context: estructura exacta del `persona.md` → pendiente de escribir
 - [ ] Cómo escala el historial de conversación: ¿ventana deslizante? ¿compresión con /compact?
+
+## Field Notes
+
+### 2026-05-09: Run challenger after errata — before ADR lock
+After applying E1-E3 errata (billing, ruflo stack, 202 async), challenger found 2 CRITICAL production gaps in the same artifact (dead-letter, HMAC). Errata-pass makes a doc look finalized; challenger treats it as a new baseline. Order: errata → challenger → ADR. Never skip the challenger step when errata cluster on an architecture artifact.
+Source: pre-ADR-001 challenger review / t-54 t-55
