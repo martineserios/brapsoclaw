@@ -9,7 +9,7 @@ Spec mismatches found during sessions. Resolved via `/brana:maintain-specs`.
 | E2026-05-08-1 | Medium | resolved | CLAUDE.md billing mode allows subscription for dev — blocked since Feb 2026 |
 | E2026-05-08-2 | Medium | resolved | CLAUDE.md stack table omits ruflo as production dependency |
 | E2026-05-08-3 | Low | resolved | CLAUDE.md architecture diagram missing 202 Accepted async pattern |
-| E2026-05-09-1 | Medium | pending | CLAUDE.md "Key differences" table presents aspirational features as shipped |
+| E2026-05-09-1 | Medium | resolved | CLAUDE.md "Key differences" table presents aspirational features as shipped |
 
 ---
 
@@ -55,7 +55,7 @@ Spec mismatches found during sessions. Resolved via `/brana:maintain-specs`.
 ## E2026-05-09-1: CLAUDE.md "Key differences" table presents aspirational features as shipped
 
 **Severity:** Medium
-**Status:** pending (fix: t-29 or next CLAUDE.md update)
+**Status:** resolved (2026-05-09 — Status column added, note added, HMAC row added)
 **Discovery:** 2026-05-09 debrief — challenger review + debrief-analyst cross-check
 **Affected files:** `.claude/CLAUDE.md` — §Key differences from NanoClaw
 

@@ -26,14 +26,16 @@ Kapso requires ≤5s webhook response. brapsoclaw returns 202 Accepted immediate
 
 ### Key differences from NanoClaw
 
-| Feature | NanoClaw | brapsoclaw |
-|---------|----------|------------|
-| WhatsApp transport | Baileys (unofficial, Web protocol) | Kapso (official Business API) |
-| Message delivery | Polling every 2s | Push webhooks (no latency, no waste) |
-| Message types | Text only | Text, media, buttons, templates, flows |
-| Isolation | Docker containers per group | Docker + network isolation |
-| Bot commands | None | /reset, /status, /compact |
-| Security | None | Input sanitization + phone allowlist + audit log |
+> No code exists yet. All brapsoclaw entries below are Phase 1 targets, not shipped features.
+
+| Feature | NanoClaw | brapsoclaw | Status |
+|---------|----------|------------|--------|
+| WhatsApp transport | Baileys (unofficial, Web protocol) | Kapso (official Business API) | Phase 1 |
+| Message delivery | Polling every 2s | Push webhooks (no latency, no waste) | Phase 1 |
+| Message types | Text only | Text, media, buttons, templates, flows | Phase 1 |
+| Isolation | Docker containers per group | Docker + network isolation | Phase 1 |
+| Bot commands | None | /reset, /status, /compact | Phase 1 |
+| Security | None | Input sanitization + phone allowlist + audit log + HMAC-SHA256 | Phase 1 |
 
 ## Stack
 
