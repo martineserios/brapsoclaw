@@ -2,7 +2,7 @@
 title: brapsoclaw — Solución Técnica
 status: current
 created: 2026-05-13
-updated: 2026-05-13
+updated: 2026-05-13 (agentfs/Turso + mirage evaluations added)
 task: t-28
 ---
 
@@ -205,6 +205,17 @@ Ruflo ya soporta HTTP mode y PostgreSQL backend natively — no hay que construi
 
 MVP (Fase 0) arranca sin tools — solo conversación con persona context estático.
 
+### Acceso a archivos remotos (Fases 4-6)
+
+Para que brapsoclaw lea los `.md` de brana-knowledge desde cloud hay dos opciones evaluadas:
+
+| Opción | Cuándo usar |
+|--------|------------|
+| **GitHub API** (`read_project()`) | Acceso a archivos específicos por path — ya está en el diseño, cero infra extra |
+| **Mirage + S3** (`@struktoai/mirage-node`) | Si el agente necesita `grep`/`find`/navegación sobre los archivos — monta un S3 bucket como filesystem POSIX, el agente opera con comandos Unix estándar |
+
+Mirage no reemplaza ruflo (búsqueda semántica) — son complementarios: ruflo para "encontrá lo relevante", mirage para "dame exactamente este archivo o buscá literalmente esta cadena".
+
 ---
 
 ## Persona Context
@@ -284,6 +295,7 @@ Sonnet 4.6: $3/MTok input + $15/MTok output
 - [ ] Persona context: estructura exacta del `agent/persona.md`
 - [ ] Historial de conversación: ventana deslizante vs compresión con `/compact`
 - [ ] ORM/query builder definitivo: Kysely vs Drizzle (debe decidirse antes de t-33)
+- [ ] **Evaluar agentfs/Turso en t-33** — agentfs da KV store per-contact + tool_calls audit-log insert-only gratis. Turso como backing eliminaría el riesgo SQLite→PostgreSQL de ADR-001 (mismo driver dev/prod, sync a cloud). Blocker: historial de conversación (Message[]) no encaja nativamente en KV — evaluar en el momento de construir t-33, no antes.
 
 ---
 
