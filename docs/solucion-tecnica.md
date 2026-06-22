@@ -301,7 +301,7 @@ Sonnet 4.6: $3/MTok input + $15/MTok output
 
 ## Referencias
 
-- `docs/decisions/ADR-001-stack-arquitectura-brana-cloud.md` — decisiones de arquitectura locked
+- `docs/architecture/decisions/ADR-001-stack-arquitectura-brana-cloud.md` — decisiones de arquitectura locked
 - `docs/ideas/personal-assistant-kapso.md` — brainstorm original con diseño completo
 - `.claude/CLAUDE.md` — convenciones del proyecto
 - `memory/field-note_subscription-mode-blocked.md` — billing constraint
